@@ -2,9 +2,11 @@
 Here you can find my solutions to 2025's Advent of Code problems.
 
 ## Languages used
-Haskell, Prolog
+Haskell, Prolog, Go
 
 ## Languages by day
 Day1 - Haskell
 
 Day2 - Prolog
+
+Day3 - Go
