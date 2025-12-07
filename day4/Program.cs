@@ -2,7 +2,17 @@
 {
     class Solution
     {
-        static int CountNeighbors(string[] map, int r, int c)
+        static char[][] LoadMap(string filepath)
+        {
+            var lines = File.ReadAllLines(filepath);
+            var map = new char[lines.Length][];
+            for (int i = 0; i < lines.Length; i++)
+            {
+                map[i] = lines[i].ToCharArray();
+            }
+            return map;
+        }
+        static int CountNeighbors(char[][] map, int r, int c)
         {
             int mapHeight = map.Length;
             int mapWidth = map[0].Length;
@@ -19,28 +29,42 @@
             }
             return count;
         }
-        static int CountAccessible(string[] map)
+        static List<(int row, int col)> GetAccessibleRolls(char[][] map)
         {
-            int accessibleCount = 0;
-            for (int i = 0; i < map.Length; i++)
+            List<(int, int)> accessibleRolls = new List<(int, int)> ();
+            for (int r = 0; r < map.Length; r++)
             {
-                for (int j = 0; j < map[i].Length; j++)
+                for (int c = 0; c < map[r].Length; c++)
                 {
-                    if (map[i][j] == '@' && CountNeighbors(map, i, j) < 4)
+                    if (map[r][c] == '@' && CountNeighbors(map, r, c) < 4)
                     {
-                        accessibleCount++;
+                        accessibleRolls.Add((r, c));
                     }
                 }
             }
-            return accessibleCount;
+            return accessibleRolls;
+        }
+        static int RemoveAccessibleRolls(char[][] map)
+        {
+            var removableRolls = GetAccessibleRolls(map);
+            var count = 0;
+            while (removableRolls.Count > 0)
+            {
+                count += removableRolls.Count;
+                foreach (var (row, col) in removableRolls)
+                {
+                    map[row][col] = 'x';
+                }
+                removableRolls = GetAccessibleRolls(map);
+            }
+            return count;
         }
         static void Main(string[] args)
         {
             string inputFilePath = "input.txt";
-            var map = File.ReadAllLines(inputFilePath);
-
-            Console.WriteLine($"There are {CountAccessible(map)} rolls of paper that can be accessed by a forklift ");
+            var map = LoadMap(inputFilePath);
+            Console.WriteLine($"There are {GetAccessibleRolls(map).Count} rolls of paper that can be accessed by a forklift.");
+            Console.WriteLine($"A total of {RemoveAccessibleRolls(map)} rolls of paper can be removed ");
         }
     }
-
 }
