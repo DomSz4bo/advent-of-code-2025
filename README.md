@@ -1,5 +1,4 @@
-# Advent of Code 2025.
-Here you can find my solutions to 2025's Advent of Code problems.
+# Advent of Code 2025
 
 ## Languages used
 Haskell, Prolog, Go, C#, Java, Kotlin
