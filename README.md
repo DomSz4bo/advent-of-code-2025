@@ -1,7 +1,7 @@
 # Advent of Code 2025
 
 ## Languages used
-Haskell, Prolog, Go, C#, Java, Kotlin
+Haskell, Prolog, Go, C#, Java, Kotlin, C
 
 ## Languages by day
 Day1 - Haskell
@@ -15,3 +15,5 @@ Day4 - C#
 Day5 - Java
 
 Day6 - Kotlin
+
+Day7 - C
