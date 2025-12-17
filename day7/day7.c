@@ -46,7 +46,8 @@ void trim(char string[], const size_t len) {
 int main(void) {
     FILE *fptr = fopen("input.txt", "r");
     if (fptr == NULL) {
-        printf("File not found\n");
+        fprintf(stderr, "File not found\n");
+        return 1;
     }
     char line[256];
     fgets(line, sizeof(line), fptr);
