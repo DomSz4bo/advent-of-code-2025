@@ -18,4 +18,6 @@ Day6 - Kotlin
 
 Day7 - C
 
+Day8 - Kotlin
+
 Day11 - C++
